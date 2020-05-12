@@ -32,7 +32,7 @@ class HeavyObjectEnv(gym.Env):
         fix_dist=None,
         num_agents=2,
         centralized=False,
-        max_episode_steps=30,
+        max_episode_steps=50,
         shape_file="shape.txt",
     ):
 
@@ -282,7 +282,7 @@ class HeavyObjectEnv(gym.Env):
             state = self._state
         xs, ys, gxs, gys, angles, goal_angles = self.get_pos_gpos(state=state)
         #print("xs",xs,"gxs",gxs)
-        dists = np.sqrt(np.square(xs - gxs) + np.square(ys - gys))
+        dists = np.sqrt(2*np.square(xs - gxs) + 2*np.square(ys - gys)+np.square(angles- goal_angles))
 
         #每个agents的奖励是一样的（平均的），这里可以考虑修改
         #current_value = -np.mean(dists)
@@ -303,7 +303,7 @@ class HeavyObjectEnv(gym.Env):
         # Get reward
         new_cx, new_cy, new_angle = self._get_new_state(actions)
         rew = self._action_reward(actions)
-        print(rew)
+        #print(rew)
         #修改rewards
         #rews = [rew] * self.num_agents
         rews= rew

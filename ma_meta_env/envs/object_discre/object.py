@@ -32,7 +32,7 @@ class HeavyObjectEnv(gym.Env):
         fix_dist=None,
         num_agents=3,
         centralized=False,
-        max_episode_steps=30,
+        max_episode_steps=50,
         shape_file="shape.txt",
     ):
 
@@ -265,14 +265,14 @@ class HeavyObjectEnv(gym.Env):
             state = self._state
         xs, ys, gxs, gys, angles, goal_angles = self.get_pos_gpos(state=state)
         #print("xs",xs,"gxs",gxs)
-        dists = np.sqrt(np.square(xs - gxs) + np.square(ys - gys))
+        dists = np.sqrt(2*np.square(xs - gxs) + 2*np.square(ys - gys)+np.square(angles- goal_angles))
 
         #每个agents的奖励是一样的（平均的），这里可以考虑修改
         #current_value = -np.mean(dists)
         current_value = -dists
         self._last_value = current_value
         reward = current_value
-        print(reward,"re")
+        #print(reward,"re")
         return reward
 
     def _clip_actions(self, actions):
@@ -388,7 +388,7 @@ class HeavyObjectEnv(gym.Env):
         new_cx = cx + (F_x / self.mass) * self.dt
         new_cy = cy + (F_y / self.mass) * self.dt
         new_angle = self.regulate_radians(angle + (F_r / self.inertia) * self.dt)
-        print(new_cy-cy,new_cx-cx)
+        #print(new_cy-cy,new_cx-cx)
         optimal_action = False  # report optimal rew in paper
         if optimal_action:
             ds = (

@@ -128,7 +128,7 @@ class MADDPG(object):
             vf_in = torch.cat((obs[agent_i], acs[agent_i]), dim=1)
         actual_value = curr_agent.critic(vf_in)
         vf_loss = MSELoss(actual_value, target_value.detach())
-        print(vf_loss,"c_loss")
+        #print(vf_loss,"c_loss")
         #print(len(rews[agent_i]),np.where(rews[agent_i]<0)[0],len(np.where(rews[agent_i]>0)[0]))
         #print('[Critic Loss]: %f' % vf_loss.item())
         critic_loss_list.append(vf_loss.item())
@@ -172,7 +172,7 @@ class MADDPG(object):
                               dim=1)
         #print(curr_agent.critic(vf_in))
         pol_loss = -curr_agent.critic(vf_in).mean()
-        print(pol_loss,"p_loss")
+        #print(pol_loss,"p_loss")
 
         pol_loss += (curr_pol_out**2).mean() * 1e-3
 

@@ -20,7 +20,7 @@ def make_parallel_env(num_agents, n_rollout_threads, seed,shape_file):
         def init_env():
             env = HeavyObjectEnv( num_agents=num_agents,shape_file=shape_file)
             #env.seed(seed + rank * 1000)
-            np.random.seed(seed + rank * 1000)
+            #np.random.seed(seed + rank * 1000)
             return env
         return init_env
     if n_rollout_threads == 1:
@@ -196,25 +196,25 @@ if __name__ == '__main__':
     parser.add_argument("shape_file", help="Shape file")
     parser.add_argument("num_agents", default=3, type=int)
     # env params
-    parser.add_argument("--n_rollout_threads", default=128, type=int)
+    parser.add_argument("--n_rollout_threads", default=512, type=int)
     parser.add_argument("--n_training_threads", default=8, type=int)
     parser.add_argument("--buffer_length", default=int(1e6), type=int)
 
-    parser.add_argument("--n_episodes", default=20000, type=int)
-    parser.add_argument("--episode_length", default=30, type=int)
-    parser.add_argument("--steps_per_update", default=500, type=int)
+    parser.add_argument("--n_episodes", default=25000, type=int)
+    parser.add_argument("--episode_length", default=45, type=int)
+    parser.add_argument("--steps_per_update", default=200, type=int)
 
     parser.add_argument("--batch_size",
                         default=1024, type=int,
                         help="Batch size for model training")
 
-    parser.add_argument("--n_exploration_eps", default=20000, type=int)
+    parser.add_argument("--n_exploration_eps", default=25000, type=int)
     parser.add_argument("--init_noise_scale", default=0.3, type=float)
     parser.add_argument("--final_noise_scale", default=0.0, type=float)
     parser.add_argument("--save_interval", default=1000, type=int)
 
     parser.add_argument("--hidden_dim", default=64, type=int)
-    parser.add_argument("--lr", default=0.01, type=float)
+    parser.add_argument("--lr", default=0.001, type=float)
     parser.add_argument("--tau", default=0.01, type=float)
     parser.add_argument("--agent_alg",
                         default="MADDPG", type=str,
