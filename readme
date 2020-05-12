@@ -1,0 +1,1 @@
+python train.py multi 3 shape.txt 3

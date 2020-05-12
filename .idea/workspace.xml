@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="20ab5b1d-0933-43ee-9ebe-1ecd8ef13215" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/ma-meta-env" />
+  </component>
+  <component name="ProjectId" id="1aIhl9tN5gTakGUbCSrItrb9SKP" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/ma_meta_env/envs/object" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/ma_meta_env/envs/object" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="20ab5b1d-0933-43ee-9ebe-1ecd8ef13215" name="Default Changelist" comment="" />
+      <created>1586429163904</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1586429163904</updated>
+      <workItem from="1586429166522" duration="849000" />
+      <workItem from="1586430027661" duration="347000" />
+      <workItem from="1586492167822" duration="1245000" />
+      <workItem from="1586493428986" duration="1797000" />
+      <workItem from="1586495235798" duration="2017000" />
+      <workItem from="1587298727603" duration="1796000" />
+      <workItem from="1587300534825" duration="1797000" />
+      <workItem from="1587302346289" duration="1815000" />
+      <workItem from="1587304171183" duration="1797000" />
+      <workItem from="1587305979009" duration="1471000" />
+      <workItem from="1587307592407" duration="24000" />
+      <workItem from="1587476833715" duration="1796000" />
+      <workItem from="1587478639950" duration="1796000" />
+      <workItem from="1587480446638" duration="1797000" />
+      <workItem from="1587482254677" duration="21000" />
+      <workItem from="1587482334425" duration="18000" />
+      <workItem from="1587482364118" duration="1796000" />
+      <workItem from="1587484172261" duration="1796000" />
+      <workItem from="1587485978459" duration="865000" />
+      <workItem from="1587523696284" duration="1796000" />
+      <workItem from="1587525501785" duration="1798000" />
+      <workItem from="1587527309486" duration="1796000" />
+      <workItem from="1587529116064" duration="2068000" />
+      <workItem from="1587531985183" duration="1797000" />
+      <workItem from="1587533791787" duration="1493000" />
+      <workItem from="1587535598827" duration="1798000" />
+      <workItem from="1587537407290" duration="1913000" />
+      <workItem from="1587539534561" duration="478000" />
+      <workItem from="1587541385202" duration="602000" />
+      <workItem from="1587740089890" duration="1795000" />
+      <workItem from="1587741896220" duration="1795000" />
+      <workItem from="1587743701161" duration="1551000" />
+      <workItem from="1587780683536" duration="1795000" />
+      <workItem from="1587782489909" duration="1795000" />
+      <workItem from="1587784295246" duration="1797000" />
+      <workItem from="1587786104000" duration="1562000" />
+      <workItem from="1587787914174" duration="1795000" />
+      <workItem from="1587789720159" duration="1795000" />
+      <workItem from="1587791526490" duration="2012000" />
+      <workItem from="1587793645564" duration="10000" />
+      <workItem from="1587794322606" duration="1117000" />
+      <workItem from="1587795449520" duration="1851000" />
+      <workItem from="1587797310880" duration="1638000" />
+      <workItem from="1587800113730" duration="1820000" />
+      <workItem from="1587801944963" duration="1672000" />
+      <workItem from="1587803751440" duration="1795000" />
+      <workItem from="1587805573286" duration="1281000" />
+      <workItem from="1587807379317" duration="1008000" />
+      <workItem from="1587911279083" duration="1795000" />
+      <workItem from="1587913084668" duration="1808000" />
+      <workItem from="1587914918222" duration="1796000" />
+      <workItem from="1587916724352" duration="1796000" />
+      <workItem from="1587918564857" duration="20000" />
+      <workItem from="1588042762031" duration="1742000" />
+      <workItem from="1588044863657" duration="1513000" />
+      <workItem from="1588052994853" duration="627000" />
+      <workItem from="1588054936678" duration="1897000" />
+      <workItem from="1588059142831" duration="1876000" />
+      <workItem from="1588506959197" duration="1172000" />
+      <workItem from="1588838111599" duration="1244000" />
+      <workItem from="1588841431375" duration="1796000" />
+      <workItem from="1588843237563" duration="1796000" />
+      <workItem from="1588845044086" duration="389000" />
+      <workItem from="1588856150428" duration="1796000" />
+      <workItem from="1588857955608" duration="1796000" />
+      <workItem from="1588859765977" duration="1399000" />
+      <workItem from="1588898421968" duration="710000" />
+      <workItem from="1589071344633" duration="1797000" />
+      <workItem from="1589073151311" duration="1797000" />
+      <workItem from="1589074957698" duration="1797000" />
+      <workItem from="1589076765203" duration="1796000" />
+      <workItem from="1589078571085" duration="1796000" />
+      <workItem from="1589080376700" duration="1796000" />
+      <workItem from="1589082231259" duration="1779000" />
+      <workItem from="1589085248735" duration="1796000" />
+      <workItem from="1589087056132" duration="1798000" />
+      <workItem from="1589124290700" duration="988000" />
+      <workItem from="1589168018089" duration="1772000" />
+      <workItem from="1589176865619" duration="634000" />
+      <workItem from="1589196718880" duration="1793000" />
+      <workItem from="1589198617962" duration="1796000" />
+      <workItem from="1589200425220" duration="1704000" />
+      <workItem from="1589202508673" duration="1494000" />
+      <workItem from="1589204319330" duration="1797000" />
+      <workItem from="1589206129250" duration="1796000" />
+      <workItem from="1589207938629" duration="1148000" />
+      <workItem from="1589243472590" duration="1795000" />
+      <workItem from="1589245367897" duration="1796000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
