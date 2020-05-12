@@ -196,7 +196,7 @@ if __name__ == '__main__':
     parser.add_argument("shape_file", help="Shape file")
     parser.add_argument("num_agents", default=3, type=int)
     # env params
-    parser.add_argument("--n_rollout_threads", default=512, type=int)
+    parser.add_argument("--n_rollout_threads", default=256, type=int)
     parser.add_argument("--n_training_threads", default=8, type=int)
     parser.add_argument("--buffer_length", default=int(1e6), type=int)
 
