@@ -12,8 +12,8 @@ def run_env(fix_goal, num_agents,shape_file):
     #print(acs_space,acs_space[0].n)
     total_reward = 0
     while True:
-        #ac = np.array([[8, 0.5]] * env.num_agents)
-        ac = np.array([ac_space.sample() for ac_space in acs_space])
+        ac = np.array([[0.2, 0.3]] * env.num_agents)
+        #ac = np.array([ac_space.sample() for ac_space in acs_space])
         print("sample",ac)
         ob, rew, done, _ = env.step(ac)
         print("ob",ob)
@@ -26,4 +26,4 @@ def run_env(fix_goal, num_agents,shape_file):
             ob = env.reset()
 
 if __name__ == "__main__":
-    run_env(True, 5,"shape.txt")
+    run_env(True, 3,"shape.txt")

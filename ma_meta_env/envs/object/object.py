@@ -303,6 +303,7 @@ class HeavyObjectEnv(gym.Env):
         # Get reward
         new_cx, new_cy, new_angle = self._get_new_state(actions)
         rew = self._action_reward(actions)
+        print(rew)
         #修改rewards
         #rews = [rew] * self.num_agents
         rews= rew
@@ -367,6 +368,7 @@ class HeavyObjectEnv(gym.Env):
         : F_r   : joint force to rotate the stick
         """
         angles = state[2] + self.get_angle_offsets()
+        #print(state[2],self.get_angle_offsets())
         if self.centralized:
             F_xs = actions[:, 0] * np.cos(angles[0]) - actions[:, 1] * np.sin(angles[1])
             F_ys = actions[:, 0] * np.sin(angles[0]) + actions[:, 1] * np.cos(angles[1])
@@ -376,7 +378,7 @@ class HeavyObjectEnv(gym.Env):
             F_ys = actions[:, 0] * np.sin(angles + actions[:, 1])
             F_rs = actions[:, 0] * np.sin(actions[:, 1])
         for i in range(len(F_rs)):
-            F_rs[i]=F_rs[i]*self.get_r_length()[i]
+            F_rs[i]=F_rs[i]*(self.get_r_length()[i])
 
         F_xs, F_ys, F_rs = F_xs.T, F_ys.T, F_rs.T
         return F_xs, F_ys, F_rs
@@ -496,7 +498,10 @@ class HeavyObjectEnv(gym.Env):
             cen_x=self.cen_change_x+show_state[0]
             cen_y = self.cen_change_y + show_state[1]
             plt.scatter(cen_x,cen_y,marker="*",c="b")
-
+            gx, gy, _ = self.goal
+            g_cen_x = self.cen_change_x + gx
+            g_cen_y = self.cen_change_y + gy
+            plt.scatter(g_cen_x, g_cen_y, marker="*", c="y")
 
             # Before adaptation visualization
             if show_before:
@@ -537,9 +542,9 @@ class HeavyObjectEnv(gym.Env):
             markers = ["$" + s + "$" for s in "ABCDE"[: self.num_agents]]
             sm_marker = 50
             lg_marker = 80
-            if gxs is not None and gys is not None:
-                gxs += [gxs[0]]
-                gys += [gys[0]]
+            #if gxs is not None and gys is not None:
+            #    gxs += [gxs[0]]
+            #    gys += [gys[0]]
             ax.plot(gxs, gys, ":", lw=2, alpha=1, color="grey")
             if self.num_agents == 2:
                 goal_plt = plt.Line2D(

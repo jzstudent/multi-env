@@ -48,7 +48,7 @@ def run(config):
             actions = [ac.data.numpy().flatten() for ac in torch_actions]
             #print(actions_one_hot)
             #actions = np.array([i.tolist().index(1.0) for i in actions_one_hot])
-            print(actions)
+            #print(actions)
             print(t_i)
 
             for j in actions:
@@ -86,7 +86,7 @@ if __name__ == '__main__':
                         help="Load incremental policy from given episode " +
                              "rather than final policy")
     parser.add_argument("--n_episodes", default=10, type=int)
-    parser.add_argument("--episode_length", default=25, type=int)
+    parser.add_argument("--episode_length", default=30, type=int)
     parser.add_argument("--fps", default=30, type=int)
 
     config = parser.parse_args()

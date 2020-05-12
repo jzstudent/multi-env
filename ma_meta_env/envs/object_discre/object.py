@@ -493,6 +493,10 @@ class HeavyObjectEnv(gym.Env):
             cen_x=self.cen_change_x+show_state[0]
             cen_y = self.cen_change_y + show_state[1]
             plt.scatter(cen_x,cen_y,marker="*",c="b")
+            gx, gy, _ = self.goal
+            g_cen_x = self.cen_change_x + gx
+            g_cen_y = self.cen_change_y + gy
+            plt.scatter(g_cen_x, g_cen_y, marker="*", c="y")
 
 
             # Before adaptation visualization
@@ -534,9 +538,9 @@ class HeavyObjectEnv(gym.Env):
             markers = ["$" + s + "$" for s in "ABCDE"[: self.num_agents]]
             sm_marker = 50
             lg_marker = 80
-            if gxs is not None and gys is not None:
-                gxs += [gxs[0]]
-                gys += [gys[0]]
+            #if gxs is not None and gys is not None:
+            #    gxs += [gxs[0]]
+            #    gys += [gys[0]]
             ax.plot(gxs, gys, ":", lw=2, alpha=1, color="grey")
             if self.num_agents == 2:
                 goal_plt = plt.Line2D(

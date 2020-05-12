@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="20ab5b1d-0933-43ee-9ebe-1ecd8ef13215" name="Default Changelist" comment="" />
+    <list default="true" id="20ab5b1d-0933-43ee-9ebe-1ecd8ef13215" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/evaluate_con.py" beforeDir="false" afterPath="$PROJECT_DIR$/evaluate_con.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/run_heavy.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/run_heavy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/shape.txt" beforeDir="false" afterPath="$PROJECT_DIR$/examples/shape.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ma_meta_env/envs/object/object.py" beforeDir="false" afterPath="$PROJECT_DIR$/ma_meta_env/envs/object/object.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ma_meta_env/envs/object_discre/object.py" beforeDir="false" afterPath="$PROJECT_DIR$/ma_meta_env/envs/object_discre/object.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -155,6 +162,10 @@
       <workItem from="1589207938629" duration="1148000" />
       <workItem from="1589243472590" duration="1795000" />
       <workItem from="1589245367897" duration="1796000" />
+      <workItem from="1589257099846" duration="670000" />
+      <workItem from="1589266028084" duration="527000" />
+      <workItem from="1589269222749" duration="1797000" />
+      <workItem from="1589271030843" duration="702000" />
     </task>
     <servers />
   </component>
