@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="20ab5b1d-0933-43ee-9ebe-1ecd8ef13215" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithms/maddpg.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithms/maddpg.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ma_meta_env/envs/object/object.py" beforeDir="false" afterPath="$PROJECT_DIR$/ma_meta_env/envs/object/object.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ma_meta_env/envs/object_discre/object.py" beforeDir="false" afterPath="$PROJECT_DIR$/ma_meta_env/envs/object_discre/object.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/train_con.py" beforeDir="false" afterPath="$PROJECT_DIR$/train_con.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -168,6 +164,8 @@
       <workItem from="1589273284171" duration="803000" />
       <workItem from="1589275493789" duration="61000" />
       <workItem from="1589288476635" duration="1793000" />
+      <workItem from="1589292344286" duration="173000" />
+      <workItem from="1589330148706" duration="68000" />
     </task>
     <servers />
   </component>
