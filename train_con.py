@@ -62,7 +62,7 @@ def run(config):
                             config.n_rollout_threads, 
                             run_num,
                             config.shape_file)
-
+    #'''
     maddpg = MADDPG.init_from_env(env=env,
                                   agent_alg = config.agent_alg,
                                   cripple_alg = config.cripple_alg,
@@ -70,6 +70,9 @@ def run(config):
                                   lr = config.lr,
                                   hidden_dim = config.hidden_dim, 
                                   discrete_action = config.discrete_action)
+    #'''
+    #maddpg = MADDPG.init_from_save(model_dir/'run1'/'model.pt')
+
     replay_buffer = ReplayBuffer(config.buffer_length, 
                                  maddpg.nagents,
                                  [obsp.shape[0] for obsp in env.observation_space],
@@ -196,12 +199,12 @@ if __name__ == '__main__':
     parser.add_argument("shape_file", help="Shape file")
     parser.add_argument("num_agents", default=3, type=int)
     # env params
-    parser.add_argument("--n_rollout_threads", default=256, type=int)
+    parser.add_argument("--n_rollout_threads", default=128, type=int)
     parser.add_argument("--n_training_threads", default=8, type=int)
     parser.add_argument("--buffer_length", default=int(1e6), type=int)
 
-    parser.add_argument("--n_episodes", default=25000, type=int)
-    parser.add_argument("--episode_length", default=45, type=int)
+    parser.add_argument("--n_episodes", default=30000, type=int)
+    parser.add_argument("--episode_length", default=25, type=int)
     parser.add_argument("--steps_per_update", default=200, type=int)
 
     parser.add_argument("--batch_size",
@@ -213,8 +216,8 @@ if __name__ == '__main__':
     parser.add_argument("--final_noise_scale", default=0.0, type=float)
     parser.add_argument("--save_interval", default=1000, type=int)
 
-    parser.add_argument("--hidden_dim", default=64, type=int)
-    parser.add_argument("--lr", default=0.001, type=float)
+    parser.add_argument("--hidden_dim", default=128, type=int)
+    parser.add_argument("--lr", default=0.01, type=float)
     parser.add_argument("--tau", default=0.01, type=float)
     parser.add_argument("--agent_alg",
                         default="MADDPG", type=str,

@@ -119,7 +119,7 @@ class MADDPG(object):
         target_value = (rews[agent_i].view(-1, 1) + self.gamma *
                         curr_agent.target_critic(trgt_vf_in) *
                         (1 - dones[agent_i].view(-1, 1)))
-        #print(len(dones[agent_i]),"done")
+        #print(torch.max(target_value),torch.min(target_value),"c_value")
 
         if self.alg_types[agent_i] == 'MADDPG':
             vf_in = torch.cat((*obs, *acs), dim=1) ## add���� *
@@ -143,7 +143,7 @@ class MADDPG(object):
 
 
         curr_agent.policy_optimizer.zero_grad()
-        #curr_agent.critic_optimizer.zero_grad()
+        curr_agent.critic_optimizer.zero_grad()
 
         if self.discrete_action:
             # Forward pass as if onehot (hard=True) but backprop through a differentiable
