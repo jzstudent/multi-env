@@ -298,7 +298,7 @@ class HeavyObjectEnv(gym.Env):
             state = self._state
         xs, ys, gxs, gys, angles, goal_angles = self.get_pos_gpos(state=state)
         #print("xs",xs,"gxs",gxs)
-        dists = np.square(xs - gxs) + np.square(ys - gys)+np.square(angles- goal_angles)
+        dists = np.sqrt(np.square(xs - gxs) + np.square(ys - gys)+np.square(angles- goal_angles))
 
         #每个agents的奖励是一样的（平均的），这里可以考虑修改
         a=[self.F_X,self.F_Y]
