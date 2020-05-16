@@ -115,11 +115,25 @@ class MADDPG(object):
                 trgt_vf_in = torch.cat((next_obs[agent_i],
                                         curr_agent.target_policy(next_obs[agent_i])),
                                        dim=1)
+        '''
+        # 强制让critic为负
+        tar_critic=curr_agent.target_critic(trgt_vf_in)
+        for i in range(len(tar_critic)):
+            if tar_critic[i]>0:
+                tar_critic[i]=tar_critic[i]*0
 
+        target_value = (rews[agent_i].view(-1, 1) + self.gamma *
+                        tar_critic *
+                        (1 - dones[agent_i].view(-1, 1)))
+        '''
         target_value = (rews[agent_i].view(-1, 1) + self.gamma *
                         curr_agent.target_critic(trgt_vf_in) *
                         (1 - dones[agent_i].view(-1, 1)))
-        #print(torch.max(target_value),torch.min(target_value),"c_value")
+
+        #if torch.mean(target_value)>0:
+            #target_value=target_value*0
+        #print(max(rews[agent_i]))
+        #print(torch.max(target_value),torch.max(tar_critic),"c_value")
 
         if self.alg_types[agent_i] == 'MADDPG':
             vf_in = torch.cat((*obs, *acs), dim=1) ## add���� *
@@ -127,6 +141,12 @@ class MADDPG(object):
         else:  # DDPG
             vf_in = torch.cat((obs[agent_i], acs[agent_i]), dim=1)
         actual_value = curr_agent.critic(vf_in)
+        '''
+        #强制critic为负
+        for i in range(len(actual_value)):
+            if actual_value[i]>0:
+                actual_value[i]=actual_value[i]*0
+        '''
         vf_loss = MSELoss(actual_value, target_value.detach())
         #print(vf_loss,"c_loss")
         #print(len(rews[agent_i]),np.where(rews[agent_i]<0)[0],len(np.where(rews[agent_i]>0)[0]))
@@ -143,7 +163,7 @@ class MADDPG(object):
 
 
         curr_agent.policy_optimizer.zero_grad()
-        curr_agent.critic_optimizer.zero_grad()
+        #curr_agent.critic_optimizer.zero_grad()
 
         if self.discrete_action:
             # Forward pass as if onehot (hard=True) but backprop through a differentiable
@@ -171,7 +191,17 @@ class MADDPG(object):
             vf_in = torch.cat((obs[agent_i], curr_pol_vf_in),
                               dim=1)
         #print(curr_agent.critic(vf_in))
+        '''
+        #强制critic为负
+        cur_critic=curr_agent.critic(vf_in)
+        for i in range(len(cur_critic)):
+            if cur_critic[i]>0:
+                cur_critic[i]=cur_critic[i]*0
+             
+        pol_loss = -cur_critic.mean()
+        '''
         pol_loss = -curr_agent.critic(vf_in).mean()
+
         #print(pol_loss,"p_loss")
 
         pol_loss += (curr_pol_out**2).mean() * 1e-3

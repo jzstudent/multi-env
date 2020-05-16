@@ -250,8 +250,10 @@ class HeavyObjectEnv(gym.Env):
         # print(self.get_angle_offsets())
         # 相对于原来调整了观测的角度
         obs = np.stack([xs, ys, angles]).T
+        obs = np.clip(obs, self.obs_low, self.obs_high)
         if self.observable_target:
-            obs = np.stack([(gxs - xs), (gys - ys), (goal_angles - angles)]).T
+            obs = np.stack([(gxs-xs), (gys-ys), self.regulate_radians(goal_angles-angles)]).T
+            obs = np.clip(obs, self.obs_low, self.obs_high)
         return obs.astype(np.float32)
 
     def _action_reward(self, actions):
@@ -259,6 +261,17 @@ class HeavyObjectEnv(gym.Env):
         new_state = self._get_new_state(actions)
         rew = self._get_reward(new_state)
         return rew
+
+    def cosine_similarity(self,x, y, norm=False):
+        """ 计算两个向量x和y的余弦相似度 """
+        assert len(x) == len(y), "len(x) != len(y)"
+        zero_list = [0] * len(x)
+        if x == zero_list or y == zero_list:
+            return float(1) if x == y else float(0)
+
+        res = np.array([[x[i] * y[i], x[i] * x[i], y[i] * y[i]] for i in range(len(x))])
+        cos = sum(res[:, 0]) / (np.sqrt(sum(res[:, 1])) * np.sqrt(sum(res[:, 2])))
+        return 0.5 * cos + 0.5 if norm else cos  # 归一化到[0, 1]区间内
 
     def _get_reward(self, state=None):
         if state is None:
@@ -268,11 +281,13 @@ class HeavyObjectEnv(gym.Env):
         dists = np.sqrt(np.square(xs - gxs) + np.square(ys - gys)+np.square(angles- goal_angles))
 
         #每个agents的奖励是一样的（平均的），这里可以考虑修改
-        current_value = -np.mean(dists)
-        #current_value = -dists
+        a=[self.F_X,self.F_Y]
+        b=[self.goal[0]-state[0],self.goal[1]-state[1]]
+        current_value = -np.mean(dists)+0.3*np.mean(dists)*self.cosine_similarity(a, b)
+        #current_value= -dists
         self._last_value = current_value
         reward = current_value
-        #print(reward,"re")
+        #print(reward,"rews")
         return reward
 
     def _clip_actions(self, actions):
@@ -383,6 +398,9 @@ class HeavyObjectEnv(gym.Env):
         cx, cy, angle = self._state
         F_xs, F_ys, F_rs = self._convert_f_xyr(self._state, actions)
         F_x, F_y, F_r = np.mean(F_xs), np.mean(F_ys), np.mean(F_rs)
+        self.F_X = F_x
+        self.F_Y = F_y
+        self.F_R = F_r
 
         #瞬间刹车，不考虑速度
         new_cx = cx + (F_x / self.mass) * self.dt
@@ -462,7 +480,9 @@ class HeavyObjectEnv(gym.Env):
             ax = plt.gca()
 
             # Object visualization
-            show_state = show_state + (curr_state - show_state) / n_frame
+            cha=(curr_state - show_state)
+            cha[2]=self.regulate_radians(cha[2])
+            show_state = show_state + (cha) / n_frame
             xs, ys, gxs, gys, angles, _ = self.get_pos_gpos(show_state)
 
             if self.num_agents == 2:

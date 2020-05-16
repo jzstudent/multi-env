@@ -8,15 +8,15 @@ def run_env(fix_goal, num_agents,shape_file):
     step = 0
     obs_space = env.observation_space
     acs_space = env.action_space
-    print(obs_space[0].shape)
+    #print(obs_space[0].shape)
     #print(acs_space,acs_space[0].n)
     total_reward = 0
     while True:
         ac = np.array([[0.2, 0.3]] * env.num_agents)
         #ac = np.array([ac_space.sample() for ac_space in acs_space])
-        print("sample",ac)
+        #print("sample",ac)
         ob, rew, done, _ = env.step(ac)
-        print("ob",ob)
+        #print("ob",ob)
         total_reward += rew[0]
         env.render()
         step += 1

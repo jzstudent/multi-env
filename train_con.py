@@ -144,7 +144,7 @@ def run(config):
                 for u_i in range(config.n_rollout_threads):
                     for a_i in range(maddpg.nagents):
                         sample = replay_buffer.sample(config.batch_size,
-                                                      to_gpu=config.use_cuda,norm_rews=False)
+                                                      to_gpu=config.use_cuda,norm_rews=True)
                         maddpg.update(sample, a_i, logger=logger, actor_loss_list=a_loss, critic_loss_list=c_loss)
                     maddpg.update_all_targets()
                 maddpg.prep_rollouts(device='cpu')
@@ -203,7 +203,7 @@ if __name__ == '__main__':
     parser.add_argument("--n_training_threads", default=8, type=int)
     parser.add_argument("--buffer_length", default=int(1e6), type=int)
 
-    parser.add_argument("--n_episodes", default=30000, type=int)
+    parser.add_argument("--n_episodes", default=20000, type=int)
     parser.add_argument("--episode_length", default=25, type=int)
     parser.add_argument("--steps_per_update", default=200, type=int)
 
@@ -211,14 +211,14 @@ if __name__ == '__main__':
                         default=1024, type=int,
                         help="Batch size for model training")
 
-    parser.add_argument("--n_exploration_eps", default=25000, type=int)
+    parser.add_argument("--n_exploration_eps", default=20000, type=int)
     parser.add_argument("--init_noise_scale", default=0.3, type=float)
     parser.add_argument("--final_noise_scale", default=0.0, type=float)
-    parser.add_argument("--save_interval", default=1000, type=int)
+    parser.add_argument("--save_interval", default=500, type=int)
 
-    parser.add_argument("--hidden_dim", default=128, type=int)
-    parser.add_argument("--lr", default=0.01, type=float)
-    parser.add_argument("--tau", default=0.01, type=float)
+    parser.add_argument("--hidden_dim", default=64, type=int)
+    parser.add_argument("--lr", default=0.0001, type=float)
+    parser.add_argument("--tau", default=0.001, type=float)
     parser.add_argument("--agent_alg",
                         default="MADDPG", type=str,
                         choices=['MADDPG', 'DDPG'])
