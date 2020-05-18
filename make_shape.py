@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import math
+import argparse
 def shape_centroid(i):
     plt.figure(figsize=(8, 8))
     plt.xlim(-4,4)
@@ -29,8 +30,10 @@ def shape_centroid(i):
     del x[-1]
     del y[-1]
     return x,y,centroid
-
-x,y,c=shape_centroid(3)
+parser = argparse.ArgumentParser()
+parser.add_argument("num_agents", type=int)
+config = parser.parse_args()
+x,y,c=shape_centroid(config.num_agents)
 with open("shape.txt", "w") as f:
     x = str(x)
     y = str(y)

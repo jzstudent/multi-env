@@ -13,6 +13,8 @@ from ma_meta_env.envs.object import HeavyObjectEnv
 def run(config):
     model_path = (Path('./models') / config.env_id / config.model_name /
                   ('run%i' % config.run_num))
+    shape_path = (Path('./models') / config.env_id / config.model_name /
+                  ('run%i' % config.run_num) / config.shape_file)
     if config.incremental is not None:
         model_path = model_path / 'incremental' / ('model_ep%i.pt' %
                                                    config.incremental)
@@ -25,7 +27,7 @@ def run(config):
 
     maddpg = MADDPG.init_from_save(model_path)
     #env = make_env(config.env_id, discrete_action=maddpg.discrete_action)
-    env=HeavyObjectEnv( num_agents=config.num_agents,shape_file=config.shape_file)
+    env=HeavyObjectEnv( num_agents=config.num_agents,shape_file=shape_path)
     maddpg.prep_rollouts(device='cpu')
     ifi = 1 / config.fps  # inter-frame interval
 

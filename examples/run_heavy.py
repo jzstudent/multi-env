@@ -1,5 +1,5 @@
 import numpy as np
-from ma_meta_env.envs.object import HeavyObjectEnv
+from ma_meta_env.envs.object_discre import HeavyObjectEnv
 
 
 def run_env(fix_goal, num_agents,shape_file):
@@ -12,8 +12,8 @@ def run_env(fix_goal, num_agents,shape_file):
     #print(acs_space,acs_space[0].n)
     total_reward = 0
     while True:
-        ac = np.array([[0.2, 0.3]] * env.num_agents)
-        #ac = np.array([ac_space.sample() for ac_space in acs_space])
+        #ac = np.array([[0.2, 0.3]] * env.num_agents)
+        ac = np.array([ac_space.sample() for ac_space in acs_space])
         #print("sample",ac)
         ob, rew, done, _ = env.step(ac)
         #print("ob",ob)

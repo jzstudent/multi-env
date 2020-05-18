@@ -39,7 +39,7 @@ class HeavyObjectEnv(gym.Env):
         # Properties
         self.observable_target = observable_target
         self.centralized = centralized
-        assert num_agents in [1, 2, 3, 4, 5]
+        #assert num_agents in [1, 2, 3, 4, 5]
         self.num_agents = num_agents
         self.goal = goal
         self.fix_goal = fix_goal
@@ -57,6 +57,8 @@ class HeavyObjectEnv(gym.Env):
             for line in data:
                 line=line[1:-2]
                 line=line.split(",")
+                if len(line)>2:
+                    self.num_agents=len(line)
                 for i in range(len(line)):
                     line[i]=float(line[i])
                 xyc.append(line)
@@ -231,7 +233,7 @@ class HeavyObjectEnv(gym.Env):
         else:
             for i in range(num_goals):
                 if self.fix_goal:
-                    goals[i, :3] = [1, 1, np.pi / 2]
+                    goals[i, :3] = [2, 3, np.pi / 2]
                 elif self.fix_dist is not None:
                     goals[i, :3] = self.generate_random_goal(fix_dist=self.fix_dist)
                 else:
