@@ -12,7 +12,7 @@ from utils.buffer import ReplayBuffer
 from utils.env_wrappers import SubprocVecEnv, DummyVecEnv
 from algorithms.maddpg import MADDPG
 import matplotlib.pyplot as plt
-from ma_meta_env.envs.object_discre import HeavyObjectEnv
+from ma_meta_env.envs.object_dis_ran import HeavyObjectEnv
 
 
 def make_parallel_env(num_agents, n_rollout_threads, seed,shape_file):
@@ -195,12 +195,12 @@ if __name__ == '__main__':
     parser.add_argument("shape_file", help="Shape file")
     parser.add_argument("num_agents", default=3, type=int)
     # env params
-    parser.add_argument("--n_rollout_threads", default=128, type=int)
+    parser.add_argument("--n_rollout_threads", default=256, type=int)
     parser.add_argument("--n_training_threads", default=8, type=int)
     parser.add_argument("--buffer_length", default=int(1e6), type=int)
 
     parser.add_argument("--n_episodes", default=20000, type=int)
-    parser.add_argument("--episode_length", default=25, type=int)
+    parser.add_argument("--episode_length", default=35, type=int)
     parser.add_argument("--steps_per_update", default=200, type=int)
 
     parser.add_argument("--batch_size",

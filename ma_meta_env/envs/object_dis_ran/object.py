@@ -97,7 +97,7 @@ class HeavyObjectEnv(gym.Env):
         #    self.goal = self.sample_goals(1)[0]
 
         #random deflaut start and goal
-        self.ran_seed=1
+        self.ran_seed=0
 
 
     def seed(self,seed):
@@ -251,7 +251,7 @@ class HeavyObjectEnv(gym.Env):
         np.random.seed(self.ran_seed)
         self.goal=self.generate_random_goal(None)
         self._state = self.generate_random_start()
-        print(self.goal,self._state)
+        #print(self.goal,self._state)
         self._last_value = 0
         self._step_count = 0
         self.cen_change_x=0

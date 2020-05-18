@@ -1,1 +1,12 @@
-python train.py multi 3 shape.txt 3
+This is an environment for multi-agents to grasp and transport the object, which is too heavy for any single agent to carry. And you can change the position of the centroid of the object during this process. Some assumption :agents can stop the movement immediately, every agent knows itself position and the angle but doesn't know the other agents. And it can observe the goal.
+
+(1) You need to setup .
+	pip install -e .
+
+(2) You need to choose the positions where agents should grasp
+	python make_shape.py 3(the number of agents)
+
+(3) You can start to train like this
+	python train.py multi 1 shape.txt 3
+
+
