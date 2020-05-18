@@ -19,9 +19,9 @@ def make_parallel_env(num_agents, n_rollout_threads, seed,shape_file):
     def get_env_fn(rank):
         def init_env():
             env = HeavyObjectEnv( num_agents=num_agents,shape_file=shape_file)
-            #env.seed(seed + rank * 1000)
+            env.seed(seed + rank)
             #print(env.seed,rank)
-            np.random.seed(seed + rank * 1000)
+            np.random.seed(seed)
             return env
         return init_env
     if n_rollout_threads == 1:

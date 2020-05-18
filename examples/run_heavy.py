@@ -1,5 +1,5 @@
 import numpy as np
-from ma_meta_env.envs.object_discre import HeavyObjectEnv
+from ma_meta_env.envs.object_dis_ran import HeavyObjectEnv
 
 
 def run_env(fix_goal, num_agents,shape_file):
