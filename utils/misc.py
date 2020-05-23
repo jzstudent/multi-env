@@ -52,11 +52,14 @@ def onehot_from_logits(logits, eps=0.0):
     """
     # get best (according to current policy) actions in one-hot form
     argmax_acs = (logits == logits.max(1, keepdim=True)[0]).float()
+    #print(logits[0],"a")
+    #print(len(argmax_acs),argmax_acs[0])
     if eps == 0.0:
         return argmax_acs
     # get random actions in one-hot form
     rand_acs = Variable(torch.eye(logits.shape[1])[[np.random.choice(
         range(logits.shape[1]), size=logits.shape[0])]], requires_grad=False)
+
     # chooses between best and random actions using epsilon greedy
     return torch.stack([argmax_acs[i] if r > eps else rand_acs[i] for i, r in
                         enumerate(torch.rand(logits.shape[0]))])
@@ -88,5 +91,6 @@ def gumbel_softmax(logits, temperature=1.0, hard=False):
     y = gumbel_softmax_sample(logits, temperature)
     if hard:
         y_hard = onehot_from_logits(y)
+        #print(y_hard[0], "random")
         y = (y_hard - y).detach() + y
     return y

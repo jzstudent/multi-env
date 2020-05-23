@@ -108,6 +108,7 @@ def run(config):
             # get actions as torch Variables
 
             torch_agent_actions = maddpg.step(torch_obs, explore=True)
+            #print(len(torch_agent_actions),torch_agent_actions[0],"a")
 
             # convert actions to numpy arrays
             agent_actions = [ac.data.numpy() for ac in torch_agent_actions]

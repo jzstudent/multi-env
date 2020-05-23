@@ -27,7 +27,7 @@ class HeavyObjectEnv(gym.Env):
     def __init__(
         self,
         goal=None,
-        observable_target=True,
+        observable_pos=True,
         fix_goal=True,
         fix_dist=None,
         num_agents=3,
@@ -37,7 +37,7 @@ class HeavyObjectEnv(gym.Env):
     ):
 
         # Properties
-        self.observable_target = observable_target
+        self.observable_pos = observable_pos
         self.centralized = centralized
         #assert num_agents in [1, 2, 3, 4, 5]
         self.num_agents = num_agents
@@ -89,15 +89,18 @@ class HeavyObjectEnv(gym.Env):
         self._last_state = None
 
         # Observation space
-        self.obs_low = np.array([-self.map_W / 2, -self.map_H / 2, -np.pi])
-        self.obs_high = np.array([self.map_W / 2, self.map_H / 2, np.pi])
+        self.obs_low = np.array([-self.map_W , -self.map_H , -np.pi])
+        self.obs_high = np.array([self.map_W , self.map_H , np.pi])
+        if self.observable_pos:
+            self.obs_low = np.concatenate([self.obs_low, self.obs_low])
+            self.obs_high = np.concatenate([self.obs_high, self.obs_high])
 
         # Sample one goal and keep it fixed
         #if self.goal is None:
         #    self.goal = self.sample_goals(1)[0]
 
         #random deflaut start and goal
-        self.ran_seed=0
+        self.ran_seed=None
 
 
     def seed(self,seed):
@@ -167,17 +170,11 @@ class HeavyObjectEnv(gym.Env):
         high = [self.num_agents]
         return Box(low=np.array(low), high=np.array(high), dtype=np.float32)
 
-    def generate_random_goal(self, fix_dist=None):
-        if fix_dist is not None:
-            assert type(fix_dist) == float
-            angle = np.random.uniform(low=-np.pi, high=np.pi)
-            theta = np.random.uniform(low=-np.pi, high=np.pi)
-            pair = np.array([fix_dist * np.cos(angle), fix_dist * np.sin(angle), theta])
-        else:
-            pair = np.random.uniform(
-                low=[-self.map_W / 2, -self.map_H / 2, -np.pi],
-                high=[self.map_W / 2, self.map_H / 2, np.pi],
-            )
+    def generate_random_goal(self):
+        pair = np.random.uniform(
+            low=[-self.map_W / 2, -self.map_H / 2, -np.pi],
+            high=[self.map_W / 2, self.map_H / 2, np.pi],
+        )
         return pair
 
     def generate_default_start(self):
@@ -248,10 +245,12 @@ class HeavyObjectEnv(gym.Env):
         self.goal = goal
 
     def reset(self):
-        np.random.seed(self.ran_seed)
+        if self.ran_seed :
+            np.random.seed(self.ran_seed)
         self.goal=self.generate_random_goal(None)
         self._state = self.generate_random_start()
-        #print(self.goal,self._state)
+        self.centroid = self.raw_centroid
+        #print(self.ran_seed,self.goal,self._state)
         self._last_value = 0
         self._step_count = 0
         self.cen_change_x=0
@@ -268,10 +267,12 @@ class HeavyObjectEnv(gym.Env):
         # print(angles,"原来")
         # print(self.get_angle_offsets())
         # 相对于原来调整了观测的角度
-        obs = np.stack([xs, ys, angles]).T
-        obs = np.clip(obs, self.obs_low, self.obs_high)
-        if self.observable_target:
-            obs = np.stack([(gxs-xs), (gys-ys), self.regulate_radians(goal_angles-angles)]).T
+
+        if self.observable_pos:
+            obs = np.stack([(gxs-xs), (gys-ys), self.regulate_radians(goal_angles-angles),xs,ys,angles]).T
+            obs = np.clip(obs, self.obs_low, self.obs_high)
+        else:
+            obs = np.stack([(gxs - xs), (gys - ys), self.regulate_radians(goal_angles - angles)]).T
             obs = np.clip(obs, self.obs_low, self.obs_high)
         return obs.astype(np.float32)
 
@@ -303,6 +304,7 @@ class HeavyObjectEnv(gym.Env):
         a=[self.F_X,self.F_Y]
         b=[self.goal[0]-state[0],self.goal[1]-state[1]]
         current_value = -np.mean(dists)+0.3*np.mean(dists)*self.cosine_similarity(a, b)
+
         #current_value= -dists
         self._last_value = current_value
         reward = current_value
@@ -347,6 +349,7 @@ class HeavyObjectEnv(gym.Env):
         done = self._step_count > self._max_episode_steps
         dones = [done] * self.num_agents
         obs = self._get_obs()
+        #print("obs",obs)
         self._total_reward += rew
         self._last_actions = actions
 

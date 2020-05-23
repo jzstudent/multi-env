@@ -102,7 +102,7 @@ class MADDPG(object):
                 all_trgt_acs = [pi(nobs) for pi, nobs in zip(self.target_policies,
                                                              next_obs)]
             trgt_vf_in = torch.cat( (*next_obs, *all_trgt_acs), dim=1)
-            #print(len(all_trgt_acs),all_trgt_acs[0].size())
+            #print(len(all_trgt_acs),all_trgt_acs[0].size(),all_trgt_acs[0][0])
             #print(*next_obs,trgt_vf_in.size())
         else:  # DDPG
             if self.discrete_action:

@@ -89,8 +89,8 @@ class HeavyObjectEnv(gym.Env):
         self._last_state = None
 
         # Observation space
-        self.obs_low = np.array([-self.map_W / 2, -self.map_H / 2, -np.pi])
-        self.obs_high = np.array([self.map_W / 2, self.map_H / 2, np.pi])
+        self.obs_low = np.array([-self.map_W , -self.map_H , -np.pi])
+        self.obs_high = np.array([self.map_W , self.map_H , np.pi])
 
         # Sample one goal and keep it fixed
         if self.goal is None:

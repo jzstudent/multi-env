@@ -7,7 +7,7 @@ from pathlib import Path
 from torch.autograd import Variable
 #from utils.make_env import make_env
 from algorithms.maddpg import MADDPG
-from ma_meta_env.envs.object_discre import HeavyObjectEnv
+from ma_meta_env.envs.object_dis_ran import HeavyObjectEnv
 
 
 def run(config):
@@ -40,6 +40,11 @@ def run(config):
         env.render()
         for t_i in range(config.episode_length):
             calc_start = time.time()
+
+            if t_i ==15:
+                env.change_centroid(0.3,0.3)
+                print("change centroid!")
+
             # rearrange observations to be per agent, and convert to torch Variable
             torch_obs = [Variable(torch.Tensor(obs[i]).view(1, -1),
                                   requires_grad=False)
